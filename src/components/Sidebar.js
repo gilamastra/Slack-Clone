@@ -6,8 +6,26 @@ import {
   sideBarChannelsItems,
   sidebarItems,
 } from "../data/SidebarData";
+import db from "../firebase";
+import { useHistory } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({ rooms }) => {
+  const history = useHistory();
+
+  const goToChannel = (id) => {
+    console.log(id);
+    if (id) {
+      history.push(`/room/${id}`);
+    }
+  };
+  const addChannel = () => {
+    const promptName = prompt("Enter channel name");
+    if (promptName) {
+      db.collection("rooms").add({
+        name: promptName,
+      });
+    }
+  };
   return (
     <Container>
       <WorkspaceContainer>
@@ -30,12 +48,16 @@ const Sidebar = () => {
       <ChannelsContainer>
         <NewChannelContainer>
           <div>Channels</div>
-          <AddIcon />
+          <AddIcon onClick={addChannel} />
         </NewChannelContainer>
 
         <ChannelList>
-          {sideBarChannelsItems.map((item) => {
-            return <Channel>{item.text}</Channel>;
+          {rooms.map((item) => {
+            return (
+              <Channel onClick={() => goToChannel(item.id)}>
+                # {item.name}
+              </Channel>
+            );
           })}
         </ChannelList>
       </ChannelsContainer>

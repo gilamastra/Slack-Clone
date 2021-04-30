@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import AcessTimeIcon from "@material-ui/icons/AccessTime";
 import HelpOutline from "@material-ui/icons/HelpOutline";
-const Header = () => {
+const Header = ({ user, signOut }) => {
   return (
     <Container>
       <Main>
@@ -15,11 +15,15 @@ const Header = () => {
         <HelpOutline />
       </Main>
       <UserContainer>
-        <Name>Nazary</Name>
-        <UserImage>
+        <Name>{user.name}</Name>
+        <UserImage onClick={signOut}>
           <img
             alt="profileImg"
-            src="https://image.flaticon.com/icons/png/512/147/147144.png"
+            src={
+              user.photo
+                ? user.photo
+                : "http://i.imgur.com/6VBx3io.png"
+            }
           />
         </UserImage>
       </UserContainer>
@@ -90,6 +94,7 @@ const UserImage = styled.div`
   height: 28px;
   border: 2px solid white;
   border-radius: 3px;
+  cursor: pointer;
   img {
     width: 100%;
   }
