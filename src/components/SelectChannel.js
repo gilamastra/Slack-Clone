@@ -13,7 +13,11 @@ const SelectChannel = ({ addChannel }) => {
     <Container>
       <AiOutlineComment size="9rem" />
       <h1>Create or select a Channel</h1>
-      <GrAdd onClick={() => setShowModal(true)} size="3rem" />
+      <GrAdd
+        cursor="pointer"
+        onClick={() => setShowModal(true)}
+        size="3rem"
+      />
       <ModalComponent
         addChannel={addChannel}
         setIsOpen={setShowModal}

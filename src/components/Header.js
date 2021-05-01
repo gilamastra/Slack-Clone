@@ -3,10 +3,6 @@ import styled from "styled-components";
 import AcessTimeIcon from "@material-ui/icons/AccessTime";
 import HelpOutline from "@material-ui/icons/HelpOutline";
 const Header = ({ user, signOut }) => {
-  Date.now = function now() {
-    return new Date().getTime();
-  };
-  console.log(Date.now());
   return (
     <Container>
       <Main>
@@ -68,12 +64,15 @@ const Search = styled.div`
   input {
     background-color: rgb(67, 30, 68);
     border: none;
-    border-radius: 8px;
-
+    border-radius: 4px;
+    font-size: 13px;
     width: 100%;
     box-shadow: inset 0 0 0 1px rgb(104 74 104);
-    padding: 4px 8px;
+    padding: 3px 8px;
     color: white;
+    ::placeholder {
+      color: #dadada;
+    }
   }
   input:focus {
     outline: 0;
@@ -95,10 +94,9 @@ const Name = styled.div`
 const UserImage = styled.div`
   width: 28px;
   height: 28px;
-  border: 2px solid white;
-  border-radius: 3px;
   cursor: pointer;
   img {
     width: 100%;
+    border-radius: 4px;
   }
 `;

@@ -2,16 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import AddCircleOutline from "@material-ui/icons/AddCircleOutline";
 import AddIcon from "@material-ui/icons/Add";
-import {
-  sideBarChannelsItems,
-  sidebarItems,
-} from "../data/SidebarData";
-import db from "../firebase";
-import { useHistory } from "react-router-dom";
+import { sidebarItems } from "../data/SidebarData";
 import { useState } from "react";
 import ModalComponent from "./ModalComponent";
+import { useHistory } from "react-router";
 const Sidebar = ({ rooms, addChannel }) => {
-  const [addChannelModal, setAddChannelModal] = useState(false);
   const history = useHistory();
   const [showModal, setShowModal] = useState(false);
   const goToChannel = (id) => {

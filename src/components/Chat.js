@@ -73,9 +73,7 @@ const Chat = ({ user }) => {
       <Header>
         <Channel>
           <ChannelName>#{channel && channel.name}</ChannelName>
-          <ChannelInfo>
-            Company-wide announcements and work-based matters
-          </ChannelInfo>
+          <ChannelInfo>{channel && channel.desc}</ChannelInfo>
         </Channel>
         <ChannelDetails>
           <div>Details</div>

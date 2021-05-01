@@ -71,7 +71,7 @@ const TitleModal = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  align-item: center;
+  align-items: center;
   p {
     font-weight: bold;
     font-size: 20px;

@@ -28,10 +28,11 @@ function App() {
       );
     });
   };
-  const addChannel = (channelName) => {
-    if (channelName) {
+  const addChannel = ({ name, desc }) => {
+    if (name) {
       db.collection("rooms").add({
-        name: channelName,
+        name: name,
+        desc: desc,
       });
     }
   };
