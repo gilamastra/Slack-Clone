@@ -8,24 +8,19 @@ import {
 } from "../data/SidebarData";
 import db from "../firebase";
 import { useHistory } from "react-router-dom";
-
-const Sidebar = ({ rooms }) => {
+import { useState } from "react";
+import ModalComponent from "./ModalComponent";
+const Sidebar = ({ rooms, addChannel }) => {
+  const [addChannelModal, setAddChannelModal] = useState(false);
   const history = useHistory();
-
+  const [showModal, setShowModal] = useState(false);
   const goToChannel = (id) => {
     console.log(id);
     if (id) {
       history.push(`/room/${id}`);
     }
   };
-  const addChannel = () => {
-    const promptName = prompt("Enter channel name");
-    if (promptName) {
-      db.collection("rooms").add({
-        name: promptName,
-      });
-    }
-  };
+
   return (
     <Container>
       <WorkspaceContainer>
@@ -48,7 +43,12 @@ const Sidebar = ({ rooms }) => {
       <ChannelsContainer>
         <NewChannelContainer>
           <div>Channels</div>
-          <AddIcon onClick={addChannel} />
+          <AddIcon onClick={() => setShowModal(true)} />
+          <ModalComponent
+            addChannel={addChannel}
+            setIsOpen={setShowModal}
+            isOpen={showModal}
+          />
         </NewChannelContainer>
 
         <ChannelList>

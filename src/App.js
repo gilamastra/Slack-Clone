@@ -11,6 +11,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import db, { auth } from "./firebase";
 import { useEffect, useState } from "react";
+import SelectChannel from "./components/SelectChannel";
 
 function App() {
   const [rooms, setRooms] = useState([]);
@@ -26,6 +27,13 @@ function App() {
         })
       );
     });
+  };
+  const addChannel = (channelName) => {
+    if (channelName) {
+      db.collection("rooms").add({
+        name: channelName,
+      });
+    }
   };
 
   const signOut = () => {
@@ -48,12 +56,14 @@ function App() {
           <Container>
             <Header signOut={signOut} user={user} />
             <Main>
-              <Sidebar rooms={rooms} />
+              <Sidebar addChannel={addChannel} rooms={rooms} />
               <Switch>
                 <Route path="/room/:channelId">
                   <Chat user={user} />
                 </Route>
-                <Route path="/">Select or Create Channel</Route>
+                <Route path="/">
+                  <SelectChannel addChannel={addChannel} />
+                </Route>
               </Switch>
             </Main>
           </Container>

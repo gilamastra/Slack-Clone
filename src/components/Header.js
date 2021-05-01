@@ -15,7 +15,6 @@ const Header = ({ user, signOut }) => {
         <HelpOutline />
       </Main>
       <UserContainer>
-        <Name>{user.name}</Name>
         <UserImage onClick={signOut}>
           <img
             alt="profileImg"

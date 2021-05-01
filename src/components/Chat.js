@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
+import * as Scroll from "react-scroll";
+import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import ChatInput from "./ChatInput";
 import ChatMessage from "./ChatMessage";
 import db from "../firebase";
 import firebase from "firebase";
-import { useParams } from "react-router";
+import { useHistory, useLocation, useParams } from "react-router";
 const Chat = ({ user }) => {
   const [channel, setChannel] = useState([]);
   const [messages, setMessages] = useState([]);
   let { channelId } = useParams();
+  const { pathname } = useLocation();
+  const history = useHistory();
 
   const sendMessage = (text) => {
     if (channelId && text) {
@@ -25,6 +29,11 @@ const Chat = ({ user }) => {
         .add(payload);
     }
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 10000);
+  }, [pathname]);
+
   const getMessages = () => {
     db.collection("rooms")
       .doc(channelId)
@@ -44,10 +53,21 @@ const Chat = ({ user }) => {
         setChannel(snapshot.data());
       });
   };
+
+  const deleteChannel = () => {
+    db.collection("rooms")
+      .doc(channelId)
+      .delete()
+      .then(() => {
+        history.push("/rooms");
+      });
+  };
+
   useEffect(() => {
     getMessages();
     getChannel();
   }, [channelId]);
+
   return (
     <Container>
       <Header>
@@ -60,6 +80,7 @@ const Chat = ({ user }) => {
         <ChannelDetails>
           <div>Details</div>
           <Info />
+          <DeleteIcon onClick={() => deleteChannel()} />
         </ChannelDetails>
       </Header>
 
@@ -67,6 +88,8 @@ const Chat = ({ user }) => {
         {messages.length > 0 &&
           messages.map((data, index) => (
             <ChatMessage
+              id={index}
+              key={index}
               name={data.user}
               image={data.userImage}
               timestamp={data.timestamp}
@@ -115,6 +138,9 @@ const ChannelInfo = styled.div`
   color: #606060;
   font-size: 13px;
   margin-top: 2px;
+`;
+const DeleteIcon = styled(DeleteOutlineIcon)`
+  cursor: pointer;
 `;
 
 export default Chat;
