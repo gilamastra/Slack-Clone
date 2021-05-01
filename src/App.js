@@ -18,6 +18,7 @@ function App() {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user"))
   );
+  const [showSidebar, setShowSidebar] = useState(true);
 
   const getChannels = () => {
     db.collection("rooms").onSnapshot((snapshot) => {
@@ -32,7 +33,7 @@ function App() {
     if (name) {
       db.collection("rooms").add({
         name: name,
-        desc: desc,
+        desc: desc || "",
       });
     }
   };
@@ -57,7 +58,9 @@ function App() {
           <Container>
             <Header signOut={signOut} user={user} />
             <Main>
-              <Sidebar addChannel={addChannel} rooms={rooms} />
+              {showSidebar && (
+                <Sidebar rooms={rooms} addChannel={addChannel} />
+              )}
               <Switch>
                 <Route path="/room/:channelId">
                   <Chat user={user} />
@@ -77,13 +80,22 @@ function App() {
 export default App;
 
 const Container = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 100vh;
-  display: grid;
-  grid-template-rows: 38px minmax(0, 100%);
+  display: flex;
+  flex-direction: column;
 `;
 
 const Main = styled.div`
-  display: grid;
-  grid-template-columns: 260px auto;
+  display: flex;
+  height: 100%;
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: 220px auto;
+  }
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 200px auto;
+  }
+  @media screen and (max-width: 680px) {
+    grid-template-columns: 200px max-content;
+  }
 `;

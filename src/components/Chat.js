@@ -102,6 +102,7 @@ const Chat = ({ user }) => {
 
 const Container = styled.div`
   display: grid;
+  width: 100%;
   grid-template-rows: 64px auto min-content;
   min-height: 0;
 `;

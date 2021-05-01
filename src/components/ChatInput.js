@@ -86,10 +86,12 @@ const Body = styled.div`
 `;
 const Container = styled.div`
   padding: 0 20px 24px 20px;
+  width: 100%;
 `;
 const InputContainer = styled.div`
   border: 1px solid #8d8d8e;
   border-radius: 4px;
+  width: 100%;
 
   form {
     display: flex;

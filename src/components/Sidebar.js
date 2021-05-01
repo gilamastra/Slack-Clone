@@ -19,7 +19,7 @@ const Sidebar = ({ rooms, addChannel }) => {
   return (
     <Container>
       <WorkspaceContainer>
-        <Name>Clever</Name>
+        <Name>Giovani </Name>
         <NewMessage>
           <AddCircleOutline />
         </NewMessage>
@@ -62,6 +62,11 @@ const Sidebar = ({ rooms, addChannel }) => {
 
 const Container = styled.div`
   background: #3f0e40;
+  width: 300px;
+  min-width: 210px;
+  @media screen and (max-width: 680px) {
+    right: 1000px;
+  }
 `;
 const WorkspaceContainer = styled.div`
   color: white;

@@ -34,7 +34,9 @@ export default Header;
 
 const Container = styled.div`
   background: #350d36;
+  width: 100%;
   color: white;
+  padding: 5px 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,7 +46,6 @@ const Container = styled.div`
 
 const Main = styled.div`
   display: flex;
-  margin: 0 16px;
 `;
 
 const SearchContainer = styled.div`
