@@ -9,14 +9,14 @@ const ChatMessage = ({ name, text, image, timestamp }) => {
     <Container>
       <UserAvatar>
         <img src={image} alt="" />
+        <MessageContent>
+          <Name>
+            {name}
+            <span>{dateFns.format(helperDate, "h:mm: a")}</span>
+          </Name>
+          <Text>{text}</Text>
+        </MessageContent>
       </UserAvatar>
-      <MessageContent>
-        <Name>
-          {name}
-          <span>{dateFns.format(helperDate, "h:mm: a")}</span>
-        </Name>
-        <Text>{text}</Text>
-      </MessageContent>
     </Container>
   );
 };
@@ -30,20 +30,21 @@ const Container = styled.div`
 `;
 
 const UserAvatar = styled.div`
-  width: 36px;
-  height: 36px;
-  margin-right: 8px;
-
-  overflow: hidden;
+  position: relative;
+  display: flex;
   border-radius: 2px;
   img {
-    width: 100%;
+    width: 36px;
+    height: 36px;
+    margin-right: 8px;
   }
 `;
 
 const MessageContent = styled.div`
-  display: flex;
   flex-direction: column;
+  span {
+    width: auto;
+  }
 `;
 
 const Name = styled.span`
@@ -51,12 +52,15 @@ const Name = styled.span`
   font-size: 15px;
   line-height: 1.4;
   margin-right: 8px;
+  display: flex;
   span {
     margin-left: 8px;
-
+    display: block;
     font-weight: 400;
     color: rgb(97, 96, 97);
     font-size: 13px;
   }
 `;
-const Text = styled.span``;
+const Text = styled.span`
+  word-break: break-word;
+`;

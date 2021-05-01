@@ -3,6 +3,10 @@ import styled from "styled-components";
 import AcessTimeIcon from "@material-ui/icons/AccessTime";
 import HelpOutline from "@material-ui/icons/HelpOutline";
 const Header = ({ user, signOut }) => {
+  Date.now = function now() {
+    return new Date().getTime();
+  };
+  console.log(Date.now());
   return (
     <Container>
       <Main>
