@@ -37,6 +37,7 @@ const Container = styled.div`
   width: 100%;
   color: white;
   padding: 5px 0;
+  height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,6 +47,7 @@ const Container = styled.div`
 
 const Main = styled.div`
   display: flex;
+  height: 100%;
 `;
 
 const SearchContainer = styled.div`

@@ -5,10 +5,12 @@ import AddIcon from "@material-ui/icons/Add";
 import { sidebarItems } from "../data/SidebarData";
 import { useState } from "react";
 import ModalComponent from "./ModalComponent";
+
 import { useHistory } from "react-router";
-const Sidebar = ({ rooms, addChannel }) => {
+const Sidebar = ({ rooms, addChannel, showSidebar }) => {
   const history = useHistory();
   const [showModal, setShowModal] = useState(false);
+  const [isSidebar, setIsSidebar] = useState(false);
   const goToChannel = (id) => {
     console.log(id);
     if (id) {
@@ -17,7 +19,11 @@ const Sidebar = ({ rooms, addChannel }) => {
   };
 
   return (
-    <Container>
+    <Container
+      className={
+        showSidebar ? "animationSidebarShow" : "animationSidebarHide"
+      }
+    >
       <WorkspaceContainer>
         <Name>Giovani </Name>
         <NewMessage>
@@ -45,7 +51,6 @@ const Sidebar = ({ rooms, addChannel }) => {
             isOpen={showModal}
           />
         </NewChannelContainer>
-
         <ChannelList>
           {rooms.map((item) => {
             return (
@@ -63,16 +68,17 @@ const Sidebar = ({ rooms, addChannel }) => {
 const Container = styled.div`
   background: #3f0e40;
   width: 300px;
+  height: calc(100vh - 35px);
   min-width: 210px;
-  @media screen and (max-width: 680px) {
-    right: 1000px;
-  }
+  transition: 2s;
+  position: relative;
 `;
 const WorkspaceContainer = styled.div`
   color: white;
   height: 64px;
   display: flex;
   align-items: center;
+  position: relative;
   justify-content: space-between;
   padding-left: 15px;
   border-bottom: 1px solid #532753;
@@ -134,4 +140,5 @@ const Channel = styled.div`
     background-color: #350d36;
   }
 `;
+
 export default Sidebar;

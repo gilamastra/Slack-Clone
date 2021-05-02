@@ -26,8 +26,10 @@ export default ChatMessage;
 const Container = styled.div`
   padding: 8px 20px;
   display: flex;
-  width: 100%;
   align-items: center;
+  @media screen and (max-width: 768px) {
+    padding: 8px 1%;
+  }
 `;
 
 const UserAvatar = styled.div`

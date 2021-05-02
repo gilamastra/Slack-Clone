@@ -8,7 +8,7 @@ import ChatMessage from "./ChatMessage";
 import db from "../firebase";
 import firebase from "firebase";
 import { useHistory, useLocation, useParams } from "react-router";
-const Chat = ({ user }) => {
+const Chat = ({ user, showSidebar }) => {
   const [channel, setChannel] = useState([]);
   const [messages, setMessages] = useState([]);
   let { channelId } = useParams();
@@ -69,7 +69,11 @@ const Chat = ({ user }) => {
   }, [channelId]);
 
   return (
-    <Container>
+    <Container
+      className={
+        showSidebar ? "animationChatEnter" : "animationChatLeave"
+      }
+    >
       <Header>
         <Channel>
           <ChannelName>#{channel && channel.name}</ChannelName>
@@ -102,9 +106,9 @@ const Chat = ({ user }) => {
 
 const Container = styled.div`
   display: grid;
-  width: 100%;
   grid-template-rows: 64px auto min-content;
   min-height: 0;
+  height: 100%;
 `;
 const Header = styled.div`
   padding: 0 20px;
@@ -136,7 +140,6 @@ const ChannelInfo = styled.div`
   font-weight: 400;
   color: #606060;
   font-size: 13px;
-  margin-top: 2px;
 `;
 const DeleteIcon = styled(DeleteOutlineIcon)`
   cursor: pointer;

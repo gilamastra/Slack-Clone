@@ -34,8 +34,7 @@ const ChatInput = ({ sendMessage }) => {
 
             <Body>
               <p>
-                Make sure your message is shorter than 2000
-                characteres
+                Make sure your message is shorter than 2000 characters
               </p>
             </Body>
 
@@ -134,6 +133,13 @@ const ButtonModal = styled.button`
   height: 50px;
   background: #350d36;
   color: white;
+  border: 0;
+  border-radius: 8px;
+
+  :hover {
+    transition: 0.4s filter;
+    filter: brightness(0.85);
+  }
 `;
 
 const Send = styled(SendIcon)`

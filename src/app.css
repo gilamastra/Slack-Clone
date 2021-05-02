@@ -4,7 +4,108 @@
   box-sizing: border-box;
   font-family: "Roboto";
 }
+/* ANIMATION CHAT ANIMATION */
+@media screen and (max-width: 680px) {
+  .animationChatAnimationShow {
+    animation: animationChatAnimationShow 2800ms ease-in-out 0s
+      forwards;
+  }
+  .animationChatAnimationHide {
+    animation: animationChatAnimationHide 2800ms ease-in-out 0s
+      forwards;
+  }
+}
+@keyframes animationChatAnimationShow {
+  0% /* (from) */ {
+    right: 0%;
+  }
+  100% /* (to) */ {
+    right: 46%;
+  }
+}
 
+@keyframes animationChatAnimationHide {
+  0% /* (from) */ {
+    right: 46%;
+  }
+  100% /* (to) */ {
+    right: 0%;
+  }
+}
+/* ANIMATION CHAT ANIMATION */
+
+@media screen and (max-width: 680px) {
+  .animationSidebarShow {
+    animation: yourName 2800ms ease-in-out 0s forwards;
+  }
+}
+
+@keyframes yourName {
+  0% /* (from) */ {
+    position: relative;
+    height: 100%;
+
+    right: 0;
+  }
+  100% /* (to) */ {
+    position: relative;
+    height: 100%;
+    right: 45%;
+  }
+}
+/* ANIMATION SIDEBAR  */
+
+@media screen and (max-width: 680px) {
+  .animationSidebarHide {
+    animation: animationSidebarHide 2800ms ease-in-out 0s forwards;
+  }
+}
+
+@keyframes animationSidebarHide {
+  0% /* (from) */ {
+    position: relative;
+    height: 100%;
+
+    right: 45%;
+  }
+  100% /* (to) */ {
+    position: relative;
+    height: 100%;
+    right: 0%;
+  }
+}
+/* ANIMATION SIDEBAR  */
+
+/*Animation Chat Width*/
+
+@media screen and (max-width: 680px) {
+  .animationChatEnter {
+    animation: animationChatEnter 2800ms ease-in-out 0s forwards;
+  }
+}
+
+@keyframes animationChatEnter {
+  0% /* (from) */ {
+    width: 100%;
+  }
+  100% /* (to) */ {
+    width: 189%;
+  }
+}
+@media screen and (max-width: 680px) {
+  .animationChatLeave {
+    animation: animationChatLeave 2800ms ease-in-out 0s forwards;
+  }
+}
+
+@keyframes animationChatLeave {
+  0% /* (from) */ {
+    width: 189%;
+  }
+  100% /* (to) */ {
+    width: 100%;
+  }
+}
 h1,
 h2,
 h3,

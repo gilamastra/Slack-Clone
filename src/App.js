@@ -12,13 +12,15 @@ import Sidebar from "./components/Sidebar";
 import db, { auth } from "./firebase";
 import { useEffect, useState } from "react";
 import SelectChannel from "./components/SelectChannel";
-
+import { CgArrowLongRightL } from "react-icons/cg";
+import { AiOutlineDoubleRight } from "react-icons/ai";
+import { AiOutlineDoubleLeft } from "react-icons/ai";
 function App() {
   const [rooms, setRooms] = useState([]);
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user"))
   );
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   const getChannels = () => {
     db.collection("rooms").onSnapshot((snapshot) => {
@@ -58,12 +60,31 @@ function App() {
           <Container>
             <Header signOut={signOut} user={user} />
             <Main>
-              {showSidebar && (
-                <Sidebar rooms={rooms} addChannel={addChannel} />
-              )}
+              <SidebarClass
+                showSidebar={showSidebar}
+                rooms={rooms}
+                addChannel={addChannel}
+              ></SidebarClass>
               <Switch>
                 <Route path="/room/:channelId">
-                  <Chat user={user} />
+                  <ChatAnimation
+                    className={
+                      showSidebar
+                        ? "animationChatAnimationShow"
+                        : "animationChatAnimationHide"
+                    }
+                  >
+                    {showSidebar ? (
+                      <DoubleRightIcon
+                        onClick={() => setShowSidebar(!showSidebar)}
+                      />
+                    ) : (
+                      <DoubleLeftIcon
+                        onClick={() => setShowSidebar(!showSidebar)}
+                      />
+                    )}
+                    <Chat showSidebar={showSidebar} user={user} />
+                  </ChatAnimation>
                 </Route>
                 <Route path="/">
                   <SelectChannel addChannel={addChannel} />
@@ -79,23 +100,42 @@ function App() {
 
 export default App;
 
+const DoubleRightIcon = styled(AiOutlineDoubleRight)`
+  font-size: 55px;
+  cursor: pointer;
+  position: absolute;
+  color: #641666;
+  left: -25px;
+`;
+const DoubleLeftIcon = styled(AiOutlineDoubleLeft)`
+  font-size: 55px;
+  cursor: pointer;
+  position: absolute;
+  color: #641666;
+  left: -25px;
+`;
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
+  height: 97vh;
   display: flex;
   flex-direction: column;
 `;
 
 const Main = styled.div`
   display: flex;
+  width: 100%;
   height: 100%;
-  @media screen and (max-width: 1024px) {
-    grid-template-columns: 220px auto;
-  }
-  @media screen and (max-width: 768px) {
-    grid-template-columns: 200px auto;
-  }
-  @media screen and (max-width: 680px) {
-    grid-template-columns: 200px max-content;
-  }
+`;
+const SidebarClass = styled(Sidebar)``;
+
+const ChatAnimation = styled.div`
+  flex: 1;
+  height: 100%;
+  position: relative;
+`;
+
+const CgArrowIcon = styled(CgArrowLongRightL)`
+  position: absolute;
+  top: 8px;
+  font-size: 30px;
+  cursor: pointer;
 `;
