@@ -61,6 +61,7 @@ function App() {
             <Header signOut={signOut} user={user} />
             <Main>
               <SidebarClass
+                user={user}
                 showSidebar={showSidebar}
                 rooms={rooms}
                 addChannel={addChannel}
@@ -101,22 +102,31 @@ function App() {
 export default App;
 
 const DoubleRightIcon = styled(AiOutlineDoubleRight)`
+  display: none;
   font-size: 55px;
   cursor: pointer;
   position: absolute;
   color: #641666;
   left: -25px;
+  @media screen and (max-width: 680px) {
+    display: block;
+  }
 `;
 const DoubleLeftIcon = styled(AiOutlineDoubleLeft)`
+  display: none;
   font-size: 55px;
   cursor: pointer;
   position: absolute;
   color: #641666;
   left: -25px;
+  @media screen and (max-width: 680px) {
+    display: block;
+  }
 `;
 const Container = styled.div`
-  height: 97vh;
+  height: calc(100vh - 35px);
   display: flex;
+  width: 100vw;
   flex-direction: column;
 `;
 
@@ -125,17 +135,12 @@ const Main = styled.div`
   width: 100%;
   height: 100%;
 `;
-const SidebarClass = styled(Sidebar)``;
+const SidebarClass = styled(Sidebar)`
+  height: 100%;
+`;
 
 const ChatAnimation = styled.div`
   flex: 1;
   height: 100%;
   position: relative;
-`;
-
-const CgArrowIcon = styled(CgArrowLongRightL)`
-  position: absolute;
-  top: 8px;
-  font-size: 30px;
-  cursor: pointer;
 `;

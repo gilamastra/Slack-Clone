@@ -2,16 +2,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Roboto";
+  font-family: "Lato" !important ;
 }
 /* ANIMATION CHAT ANIMATION */
 @media screen and (max-width: 680px) {
   .animationChatAnimationShow {
-    animation: animationChatAnimationShow 2800ms ease-in-out 0s
+    animation: animationChatAnimationShow 1200ms ease-in-out 0s
       forwards;
   }
   .animationChatAnimationHide {
-    animation: animationChatAnimationHide 2800ms ease-in-out 0s
+    animation: animationChatAnimationHide 1200ms ease-in-out 0s
       forwards;
   }
 }
@@ -36,7 +36,7 @@
 
 @media screen and (max-width: 680px) {
   .animationSidebarShow {
-    animation: yourName 2800ms ease-in-out 0s forwards;
+    animation: yourName 1200ms ease-in-out 0s forwards;
   }
 }
 
@@ -57,7 +57,7 @@
 
 @media screen and (max-width: 680px) {
   .animationSidebarHide {
-    animation: animationSidebarHide 2800ms ease-in-out 0s forwards;
+    animation: animationSidebarHide 1200ms ease-in-out 0s forwards;
   }
 }
 
@@ -80,7 +80,7 @@
 
 @media screen and (max-width: 680px) {
   .animationChatEnter {
-    animation: animationChatEnter 2800ms ease-in-out 0s forwards;
+    animation: animationChatEnter 1200ms ease-in-out 0s forwards;
   }
 }
 
@@ -94,7 +94,7 @@
 }
 @media screen and (max-width: 680px) {
   .animationChatLeave {
-    animation: animationChatLeave 2800ms ease-in-out 0s forwards;
+    animation: animationChatLeave 1200ms ease-in-out 0s forwards;
   }
 }
 

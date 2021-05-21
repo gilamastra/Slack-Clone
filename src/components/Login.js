@@ -22,8 +22,12 @@ const Login = ({ setUser }) => {
   return (
     <Container>
       <Content>
-        <SlackImg src="http://assets.stickpng.com/images/5cb480b85f1b6d3fbadece78.png" />
-        <h1>Sign in </h1>
+        <img
+          alt="slackLogo"
+          src={
+            "https://logodownload.org/wp-content/uploads/2019/08/slack-logo.png"
+          }
+        />
         <SignInButton
           onClick={() => {
             signIn();
@@ -37,7 +41,7 @@ const Login = ({ setUser }) => {
 };
 
 const Container = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background-color: #f8f8f8;
   display: flex;
@@ -54,11 +58,11 @@ const Content = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  img {
+    height: 100px;
+  }
 `;
 
-const SlackImg = styled.img`
-  height: 150px;
-`;
 const SignInButton = styled.button`
   margin-top: 50px;
   background-color: #0a8d48;
@@ -69,5 +73,9 @@ const SignInButton = styled.button`
   border-radius: 4px;
   font-size: 15px;
   cursor: pointer;
+  :hover {
+    filter: brightness(0.9);
+    transition: 0.4s filter;
+  }
 `;
 export default Login;

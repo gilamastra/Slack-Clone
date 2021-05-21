@@ -34,7 +34,7 @@ export default Header;
 
 const Container = styled.div`
   background: #350d36;
-  width: 100%;
+  width: 100vw;
   color: white;
   padding: 5px 0;
   height: 35px;
